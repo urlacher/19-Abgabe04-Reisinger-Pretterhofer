@@ -13,13 +13,21 @@
 
 
 *asterisks*
+
 **two asterisks**
+
 __underscores__
+
 **asterisks and _underscores_**
+
 ~~Scratch this.~~
 
-*Listitem1
-*Listitem2
+1.Listitem1
+2.Listitem2
+  +unordered item 1
+  +unordered item 2
+3.Listitem 3
+
 
 [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
 ...
