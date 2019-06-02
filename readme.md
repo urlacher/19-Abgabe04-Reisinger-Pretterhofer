@@ -15,11 +15,8 @@
 *asterisks*
 
 **two asterisks**
-
 __underscores__
-
 **asterisks and _underscores_**
-
 ~~Scratch this.~~
 
 1. Listitem1
