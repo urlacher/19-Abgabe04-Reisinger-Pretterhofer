@@ -15,9 +15,9 @@
 
 # Tasklist #
 
-- [ ] Übertragen Angabe Taskliste in Markdown Readme
-<br/>
-- [ ] Einspielen Queue Vorlage aus Repository:  
+- [x] Übertragen Angabe Taskliste in Markdown Readme
+
+- [x] Einspielen Queue Vorlage aus Repository:  
 https://github.com/michaelulm/software-configuration-management/tree/master/test-automation/Queue  
             
 - [ ] Taskergebnisse Schritt für Schritt auf Git stellen
@@ -68,6 +68,8 @@ https://github.com/michaelulm/software-configuration-management/tree/master/test
 
 
 
+<br/>
+<br/>
 *asterisks*
 
 **two asterisks** 
