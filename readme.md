@@ -18,9 +18,9 @@
 - [ ] Einspielen Queue Vorlage aus Repository: https://github.com/michaelulm/software-configuration-management/tree/master/test-automation/Queue
 - [ ] Taskergebnisse Schritt für Schritt auf Git stellen
 + Führung Taskliste
-+ Veröffentlichung in Git mit aktuell durchgeführten Tätigkeiten, z.B. Testfälle geschrieben so wird auch in der Taskliste diese Aufgabe als erledigt markiert und Testfälle inkl. geänderter Taskliste ins Repository übertragen.
+- Veröffentlichung in Git mit aktuell durchgeführten Tätigkeiten, z.B. Testfälle geschrieben so wird auch in der Taskliste diese Aufgabe als erledigt markiert und Testfälle inkl. geänderter Taskliste ins Repository übertragen.
 - [ ] Korrigieren Sie den Code bzw. Debuggen Sie ihn um die Fehler zu finden
-o Es befinden sich gesamt 3 Fehler im Source Code.
++ Es befinden sich gesamt 3 Fehler im Source Code.
 o Bei Bedarf Optimieren Sie das Queue Beispiel.
 o Ergänzen Sie das Beispiel nach eigenen Ermessen um es testen zu können.
 - [ ] Erstellen Sie für Klasse und alle Methoden Kommentare um mittels Javadoc eine API Dokumentation zu erzeugen
