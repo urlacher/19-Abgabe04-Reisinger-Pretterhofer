@@ -17,7 +17,6 @@
 
 - [ ] Übertragen Angabe Taskliste in Markdown Readme
 <br/>
-
 - [ ] Einspielen Queue Vorlage aus Repository:  
 https://github.com/michaelulm/software-configuration-management/tree/master/test-automation/Queue  
             
