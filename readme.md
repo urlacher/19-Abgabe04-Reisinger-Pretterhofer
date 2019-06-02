@@ -15,7 +15,7 @@
 *asterisks*
 
 **two asterisks** 
-__underscores__
+__ underscores __
 **asterisks and _underscores_**
 ~~Scratch this.~~
 
