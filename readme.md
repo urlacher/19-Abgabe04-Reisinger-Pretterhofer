@@ -16,11 +16,14 @@
 # Tasklist #
 
 - [ ] Übertragen Angabe Taskliste in Markdown Readme
+
 - [ ] Einspielen Queue Vorlage aus Repository: 
       https://github.com/michaelulm/software-configuration-management/tree/master/test-automation/Queue
+      
 - [ ] Taskergebnisse Schritt für Schritt auf Git stellen
   + Führung Taskliste
   + Veröffentlichung in Git mit aktuell durchgeführten Tätigkeiten, z.B. Testfälle geschrieben so wird auch in der Taskliste diese Aufgabe als erledigt markiert und Testfälle inkl. geänderter Taskliste ins Repository übertragen.
+  
 - [ ] Korrigieren Sie den Code bzw. Debuggen Sie ihn um die Fehler zu finden
   + Es befinden sich gesamt 3 Fehler im Source Code.
   + Bei Bedarf Optimieren Sie das Queue Beispiel.
@@ -65,13 +68,6 @@
 Emphase the following __underscores__, but not the rest.
 **asterisks and _underscores_**
 ~~Scratch this.~~
-
-1. Listitem1
-2. Listitem2
-   + unordered item 1
-   + unordered item 2
-3. Listitem 3
-
 
 [I'm an inline-style link with title](https://www.google.com "Google's Homepage")
 ...
