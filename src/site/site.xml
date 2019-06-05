@@ -1,0 +1,12 @@
+<project name="StringQueue">
+    <publishDate position="right"/>
+    <version position="left"/>
+    <body>
+        <menu name="Overview">
+            <item name="StringQueue" href="StringQueue.html" />
+        </menu>
+        <menu ref="reports" />
+        <menu ref="parent" />
+        <menu ref="modules" />
+    </body>
+</project>
