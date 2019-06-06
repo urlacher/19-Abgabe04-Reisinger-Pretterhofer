@@ -38,7 +38,7 @@ public class StringQueue implements Queue {
 	 * Constructor that initialize the queue and delimit the
 	 * maximum size.
 	 *
-	 * @param maxSize	the maxium size of the queue
+	 * @param maxSize the maxium size of the queue
 	 */
 	public StringQueue(int maxSize){
 		this.maxSize = maxSize;
