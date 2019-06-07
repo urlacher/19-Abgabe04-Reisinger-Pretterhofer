@@ -8,32 +8,183 @@ import static org.junit.Assert.*;
 import java.util.NoSuchElementException;
 
 public class StringQueueTest {
-	public StringQueue q;
+    public StringQueue q;
+    private int maxSize = 20;
 
-	@Before
-	public void setup() throws Exception {
-		q = new StringQueue(5);
-	}
+    @Before
+    public void setup() throws Exception {
+        q = new StringQueue(maxSize);
+    }
 
-	@Test
-	/**
-	 * tries to poll an element from an empty queue.
-	 * 
-	 * @throws Exception
-	 */
-	public void testPollIsNull() throws Exception {
-		assertTrue(q.poll() == null);
-	}
 
-	/**
-	 * tries to remove an element from an empty queue. Must throw
-	 * NoSuchElementException
-	 * 
-	 * @throws Exception
-	 */
-	@Test(expected = NoSuchElementException.class)
-	public void testPopFromEmptyStack() throws Exception {
-		q.remove();
-	}
+    /**
+     * Tries to add more items to the queue as the maximum size of the queue is.
+     * Checks the return value if each method call.
+     * The last method call must return false,
+     * all other must return true.
+     */
+    @Test
+    public void testOfferMaxSize() {
+
+        for (int i = 0; i < maxSize; i++) {
+            assertTrue(q.offer(Integer.toString(i)));
+        }
+        assertFalse(q.offer("Overflow"));
+    }
+
+
+    /**
+     * Tries to poll an element from an empty queue.
+     * This element must be null.
+     *
+     * @throws Exception
+     */
+    @Test
+    public void testPollIsNull() {
+        assertTrue(q.poll() == null);
+    }
+
+
+    /**
+     * A teststring is added to the queue.
+     * The result of poll must be the teststring.
+     * The result of the poll of an empty queue must be null.
+     */
+    @Test
+    public void testOneElementWithPoll() {
+        String testString = "TestString!?12315_-*!§";
+        q.offer(testString);
+        assertTrue(q.poll() == testString);
+        assertTrue(q.poll() == null);
+    }
+
+
+    /**
+     * Puts a sequence of numbers in the queue, then polls all the elements.
+     * Sequence must be the same.
+     * One more element is polled than putted. This element must be null.
+     */
+    @Test
+    public void testSequencePollWithNumbers() {
+        for (int i = 0; i < maxSize; i++) {
+            assertTrue(q.offer(Integer.toString(i)));
+        }
+
+        for (int i = 0; i < maxSize; i++) {
+            assertTrue(q.poll().equals(Integer.toString(i)));
+        }
+
+        assertTrue(q.poll() == null);
+    }
+
+
+    /**
+     * Adds a combination of strings and numbers to the queue.
+     * poll() must return the combination of strings and numbers in the same sequence.
+     * One more element is polled than putted. This element must be null.
+     */
+    @Test
+    public void testSequencePollWithStrings() {
+        String[] testStrings = {"May the source be with you!", "So much to code, so little time :-)", " ", "!§$%&/()=?[]{}", "Kill Bill Vol. 2", "63458tr!z7h49_", "pulp", "FICTION"};
+        int arrayIndex = 0;
+
+        for (int i = 0; i < maxSize; i++) {
+
+            assertTrue(q.offer(testStrings[arrayIndex] + i));
+
+            if (arrayIndex + 1 >= testStrings.length) {
+                arrayIndex = 0;
+            } else
+                arrayIndex++;
+        }
+
+        arrayIndex = 0;
+        for (int i = 0; i < maxSize; i++) {
+
+            assertTrue(q.poll().equals(testStrings[arrayIndex] + i));
+
+            if (arrayIndex + 1 >= testStrings.length) {
+                arrayIndex = 0;
+            } else
+                arrayIndex++;
+        }
+        assertTrue(q.poll() == null);
+    }
+
+    /**
+     * Tries to remove an element from an empty queue. Must throw
+     * NoSuchElementException
+     *
+     * @throws Exception
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testRemoveFromEmptyQueue() {
+        q.remove();
+    }
+
+    /**
+     * A teststring is added to the queue.
+     * The result of remove must be the teststring.
+     * The result of the remove of an empty queue must be an exception.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testOneElementWithRemove() {
+        String testString = "bla bla bla & bla 1234";
+        q.offer(testString);
+        assertTrue(q.remove() == testString);
+        q.remove();
+    }
+
+    /**
+     * Puts a sequence of numbers in the queue, then removes all the elements.
+     * Sequence must be the same.
+     * One more element is polled than putted. This element must throw an exception.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testSequenceRemoveWithNumbers() {
+        for (int i = 0; i < maxSize; i++) {
+            assertTrue(q.offer(Integer.toString(i)));
+        }
+
+        for (int i = 0; i < maxSize; i++) {
+            assertTrue(q.remove().equals(Integer.toString(i)));
+        }
+
+        q.remove();
+    }
+
+    /**
+     * Adds a combination of strings and numbers to the queue.
+     * remove() must return the combination of strings and numbers in the same sequence.
+     * One more element is polled than putted. This element must throw an exception.
+     */
+    @Test
+    public void testSequenceRemoveWithStrings() {
+        String[] testStrings = {"I'll be back!", "Hey Dude!", " ", "!§$%&/()=?[]{}", "Kill Bill Vol. 2", "63458tr!z7h49_", "hasta", "LA VISTA"};
+        int arrayIndex = 0;
+
+        for (int i = 0; i < maxSize; i++) {
+
+            assertTrue(q.offer(testStrings[arrayIndex] + i));
+
+            if (arrayIndex + 1 >= testStrings.length) {
+                arrayIndex = 0;
+            } else
+                arrayIndex++;
+        }
+
+        arrayIndex = 0;
+        for (int i = 0; i < maxSize; i++) {
+
+            assertTrue(q.remove().equals(testStrings[arrayIndex] + i));
+
+            if (arrayIndex + 1 >= testStrings.length) {
+                arrayIndex = 0;
+            } else
+                arrayIndex++;
+        }
+        q.remove();
+    }
+
 
 }
