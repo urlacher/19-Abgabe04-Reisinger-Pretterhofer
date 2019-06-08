@@ -9,7 +9,7 @@ import java.util.NoSuchElementException;
 
 public class StringQueueTest {
     public StringQueue q;
-    private int maxSize = 20;
+    private int maxSize = 5;
 
     @Before
     public void setup() throws Exception {
@@ -50,8 +50,21 @@ public class StringQueueTest {
      * The result of the poll of an empty queue must be null.
      */
     @Test
-    public void testOneStringWithPoll() {
+    public void testOneStringWithPoll1() {
         final String testString = "TestString!?12315_-*!§";
+        q.offer(testString);
+        assertTrue(q.poll() == testString);
+        assertTrue(q.poll() == null);
+    }
+
+    /**
+     * A teststring is added to the queue.
+     * The result of poll must be the teststring.
+     * The result of the poll of an empty queue must be null.
+     */
+    @Test
+    public void testOneStringWithPoll2() {
+        final String testString = "Houston, we have a problem!";
         q.offer(testString);
         assertTrue(q.poll() == testString);
         assertTrue(q.poll() == null);
@@ -64,7 +77,7 @@ public class StringQueueTest {
      * One more element is polled than putted. This element must be null.
      */
     @Test
-    public void testSequencePollWithNumbers() {
+    public void testSequencePollWithNumbers1() {
         for (int i = 0; i < maxSize; i++) {
             assertTrue(q.offer(Integer.toString(i)));
         }
@@ -76,6 +89,23 @@ public class StringQueueTest {
         assertTrue(q.poll() == null);
     }
 
+    /**
+     * Puts a sequence of numbers in the queue, then polls all the elements.
+     * Sequence must be the same.
+     * One more element is polled than putted. This element must be null.
+     */
+    @Test
+    public void testSequencePollWithNumbers2() {
+        for (int i = maxSize; i > 0 ; i--) {
+            assertTrue(q.offer(Integer.toString(i)));
+        }
+
+        for (int i = maxSize; i > 0 ; i--) {
+            assertTrue(q.poll().equals(Integer.toString(i)));
+        }
+
+        assertTrue(q.poll() == null);
+    }
 
     /**
      * Adds a combination of strings and numbers to the queue.
@@ -137,17 +167,47 @@ public class StringQueueTest {
     }
 
     /**
+     * A teststring is added to the queue.
+     * The result of remove must be the teststring.
+     * The result of the remove of an empty queue must be an exception.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testOneStringWithRemove2() {
+        final String testString = "Oh behave, baby!";
+        assertTrue(q.remove().equals(testString));
+        q.remove();
+    }
+
+    /**
      * Puts a sequence of numbers in the queue, then removes all the elements.
      * Sequence must be the same.
      * One more element is removed than putted. This element must throw an exception.
      */
     @Test(expected = NoSuchElementException.class)
-    public void testSequenceRemoveWithNumbers() {
+    public void testSequenceRemoveWithNumbers1() {
         for (int i = 0; i < maxSize; i++) {
             assertTrue(q.offer(Integer.toString(i)));
         }
 
         for (int i = 0; i < maxSize; i++) {
+            assertTrue(q.remove().equals(Integer.toString(i)));
+        }
+
+        q.remove();
+    }
+
+    /**
+     * Puts a sequence of numbers in the queue, then removes all the elements.
+     * Sequence must be the same.
+     * One more element is removed than putted. This element must throw an exception.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testSequenceRemoveWithNumbers2() {
+        for (int i = maxSize; i > 0 ; i--) {
+            assertTrue(q.offer(Integer.toString(i)));
+        }
+
+        for (int i = maxSize; i > 0 ; i--) {
             assertTrue(q.remove().equals(Integer.toString(i)));
         }
 
@@ -203,8 +263,19 @@ public class StringQueueTest {
      * The result of peek() must be the teststring.
      */
     @Test
-    public void testOneStringWithPeek() {
+    public void testOneStringWithPeek1() {
         final String testString = "Who is Zed? Zed`s dead, baby!";
+        q.offer(testString);
+        assertTrue(q.peek() == testString);
+    }
+
+    /**
+     * A teststring is added to the queue.
+     * The result of peek() must be the teststring.
+     */
+    @Test
+    public void testOneStringWithPeek2() {
+        final String testString = "E.T. nach Hause telefonieren!";
         q.offer(testString);
         assertTrue(q.peek() == testString);
     }
@@ -247,8 +318,19 @@ public class StringQueueTest {
      * The result of element() must be the teststring.
      */
     @Test
-    public void testOneStringWithElement() {
+    public void testOneStringWithElement1() {
         final String testString = "Who is Zed? Zed`s dead, baby!";
+        q.offer(testString);
+        assertTrue(q.element().equals(testString));
+    }
+
+    /**
+     * A teststring is added to the queue.
+     * The result of element() must be the teststring.
+     */
+    @Test
+    public void testOneStringWithElement2() {
+        final String testString = "Möge die Macht mit dir sein!";
         q.offer(testString);
         assertTrue(q.element().equals(testString));
     }
