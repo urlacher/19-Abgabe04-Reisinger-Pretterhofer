@@ -161,18 +161,4 @@ public class StringQueue implements Queue {
 		}
 		return element;
 	}
-
-
-	//Just to test
-	public static void main(String[] args) {
-		StringQueue stringQueue = new StringQueue(4);
-		stringQueue.offer("A");
-		stringQueue.offer("B");
-		stringQueue.offer("C");
-		stringQueue.offer("D");
-		stringQueue.offer("E");
-		stringQueue.offer("F");
-		stringQueue.remove();
-		System.out.printf("%s", stringQueue.peek());
-	}
 }

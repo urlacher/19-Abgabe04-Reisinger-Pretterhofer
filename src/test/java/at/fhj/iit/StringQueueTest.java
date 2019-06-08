@@ -32,12 +32,11 @@ public class StringQueueTest {
         assertFalse(q.offer("Overflow"));
     }
 
+    //---------- Tests with poll() ----------
 
     /**
      * Tries to poll an element from an empty queue.
      * This element must be null.
-     *
-     * @throws Exception
      */
     @Test
     public void testPollIsNull() {
@@ -51,8 +50,8 @@ public class StringQueueTest {
      * The result of the poll of an empty queue must be null.
      */
     @Test
-    public void testOneElementWithPoll() {
-        String testString = "TestString!?12315_-*!§";
+    public void testOneStringWithPoll() {
+        final String testString = "TestString!?12315_-*!§";
         q.offer(testString);
         assertTrue(q.poll() == testString);
         assertTrue(q.poll() == null);
@@ -85,7 +84,7 @@ public class StringQueueTest {
      */
     @Test
     public void testSequencePollWithStrings() {
-        String[] testStrings = {"May the source be with you!", "So much to code, so little time :-)", " ", "!§$%&/()=?[]{}", "Kill Bill Vol. 2", "63458tr!z7h49_", "pulp", "FICTION"};
+        final String[] testStrings = {"May the source be with you!", "So much to code, so little time :-)", " ", "!§$%&/()=?[]{}", "Kill Bill Vol. 2", "63458tr!z7h49_", "pulp", "FICTION"};
         int arrayIndex = 0;
 
         for (int i = 0; i < maxSize; i++) {
@@ -111,9 +110,11 @@ public class StringQueueTest {
         assertTrue(q.poll() == null);
     }
 
+    //---------- Tests with remove() ----------
+
     /**
      * Tries to remove an element from an empty queue. Must throw
-     * NoSuchElementException
+     * NoSuchElementException.
      *
      * @throws Exception
      */
@@ -128,17 +129,17 @@ public class StringQueueTest {
      * The result of the remove of an empty queue must be an exception.
      */
     @Test(expected = NoSuchElementException.class)
-    public void testOneElementWithRemove() {
-        String testString = "bla bla bla & bla 1234";
+    public void testOneStringWithRemove() {
+        final String testString = "bla bla bla & bla 1234";
         q.offer(testString);
-        assertTrue(q.remove() == testString);
+        assertTrue(q.remove().equals(testString));
         q.remove();
     }
 
     /**
      * Puts a sequence of numbers in the queue, then removes all the elements.
      * Sequence must be the same.
-     * One more element is polled than putted. This element must throw an exception.
+     * One more element is removed than putted. This element must throw an exception.
      */
     @Test(expected = NoSuchElementException.class)
     public void testSequenceRemoveWithNumbers() {
@@ -156,11 +157,65 @@ public class StringQueueTest {
     /**
      * Adds a combination of strings and numbers to the queue.
      * remove() must return the combination of strings and numbers in the same sequence.
-     * One more element is polled than putted. This element must throw an exception.
+     * One more element is removed than putted. This element must throw an exception.
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testSequenceRemoveWithStrings() {
+        final String[] testStrings = {"I'll be back!", "Talk to the hand!", "I need your clothes, your boots and your motorcycle!", "Hast la vista, Baby!"};
+        int arrayIndex = 0;
+
+        for (int i = 0; i < maxSize; i++) {
+
+            assertTrue(q.offer(i + testStrings[arrayIndex]));
+
+            if (arrayIndex + 1 >= testStrings.length) {
+                arrayIndex = 0;
+            } else
+                arrayIndex++;
+        }
+
+        arrayIndex = 0;
+        for (int i = 0; i < maxSize; i++) {
+
+            assertTrue(q.remove().equals(i + testStrings[arrayIndex]));
+
+            if (arrayIndex + 1 >= testStrings.length) {
+                arrayIndex = 0;
+            } else
+                arrayIndex++;
+        }
+        q.remove();
+    }
+
+    //---------- Tests with peek() ----------
+
+    /**
+     * Tries to peek into an empty queue.
+     * This element must be null.
      */
     @Test
-    public void testSequenceRemoveWithStrings() {
-        String[] testStrings = {"I'll be back!", "Hey Dude!", " ", "!§$%&/()=?[]{}", "Kill Bill Vol. 2", "63458tr!z7h49_", "hasta", "LA VISTA"};
+    public void testPeekIsNull() {
+        assertTrue(q.peek() == null);
+    }
+
+    /**
+     * A teststring is added to the queue.
+     * The result of peek() must be the teststring.
+     */
+    @Test
+    public void testOneStringWithPeek() {
+        final String testString = "Who is Zed? Zed`s dead, baby!";
+        q.offer(testString);
+        assertTrue(q.peek() == testString);
+    }
+
+    /**
+     * Adds a combination of strings and numbers to the queue.
+     * peek() must show the very first element.
+     */
+    @Test
+    public void testSeveralStringsWithPeek() {
+        final String[] testStrings = {"Ein Big Mac ist ein Big Mac, aber die nennen ihn Le Big Macke!", "Ich bin Mr. Wolf. Ich löse Probleme.", "Hamburger! Der Grundstein eines jeden nahrhaften Frühstücks!"};
         int arrayIndex = 0;
 
         for (int i = 0; i < maxSize; i++) {
@@ -173,18 +228,50 @@ public class StringQueueTest {
                 arrayIndex++;
         }
 
-        arrayIndex = 0;
+        assertTrue(q.peek().equals(testStrings[0]+"0"));
+    }
+
+    //---------- Tests with element() ----------
+
+    /**
+     * Uses element() on an empty queue, must throw exception.
+     * @throws Exception
+     */
+    @Test(expected = NoSuchElementException.class)
+    public void testElementIsNull() {
+        q.element();
+    }
+
+    /**
+     * A teststring is added to the queue.
+     * The result of element() must be the teststring.
+     */
+    @Test
+    public void testOneStringWithElement() {
+        final String testString = "Who is Zed? Zed`s dead, baby!";
+        q.offer(testString);
+        assertTrue(q.element().equals(testString));
+    }
+
+    /**
+     * Adds a combination of strings and numbers to the queue.
+     * element() must show the very first element.
+     */
+    @Test
+    public void testSeveralStringsWithElement() {
+        final String[] testStrings = {"Ein Big Mac ist ein Big Mac, aber die nennen ihn Le Big Macke!", "Ich bin Mr. Wolf. Ich löse Probleme.", "Hamburger! Der Grundstein eines jeden nahrhaften Frühstücks!"};
+        int arrayIndex = 0;
+
         for (int i = 0; i < maxSize; i++) {
 
-            assertTrue(q.remove().equals(testStrings[arrayIndex] + i));
+            assertTrue(q.offer(testStrings[arrayIndex] + i));
 
             if (arrayIndex + 1 >= testStrings.length) {
                 arrayIndex = 0;
             } else
                 arrayIndex++;
         }
-        q.remove();
+
+        assertTrue(q.element().equals(testStrings[0]+"0"));
     }
-
-
 }
