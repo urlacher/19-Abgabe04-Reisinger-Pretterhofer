@@ -58,3 +58,6 @@ https://github.com/michaelulm/software-configuration-management/tree/master/test
   
 - [ ] Überprüfung Vollständigkeit der Abgabe
 - [ ] Abgabe PDF Version der Abgabe
+
+
+![Construktor Bug](./media/02_bug_01.png)
