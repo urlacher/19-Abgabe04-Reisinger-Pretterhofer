@@ -60,4 +60,4 @@ https://github.com/michaelulm/software-configuration-management/tree/master/test
 - [ ] Abgabe PDF Version der Abgabe
 
 
-![Construktor Bug](./media/02_bug_01.png)
+![Construktor Bug](media/02_bug_01.png)
