@@ -146,7 +146,7 @@ public class StringQueueTest {
      * Tries to remove an element from an empty queue. Must throw
      * NoSuchElementException.
      *
-     * @throws Exception
+     * @throws NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testRemoveFromEmptyQueue() {
@@ -306,7 +306,7 @@ public class StringQueueTest {
 
     /**
      * Uses element() on an empty queue, must throw exception.
-     * @throws Exception
+     * @throws NoSuchElementException
      */
     @Test(expected = NoSuchElementException.class)
     public void testElementIsNull() {
