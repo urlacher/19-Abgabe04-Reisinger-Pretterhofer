@@ -70,62 +70,40 @@ https://github.com/michaelulm/software-configuration-management/tree/master/test
 
 2.) Debugging der Klasse "Queue.java"
 
-    ###Bugs:###
 
+- Bugs:
+    1.1) **Fehler** im Konstruktor: "public StringQueue(int     maxsize){" ist falsch.
+    **Richtig:** "public    StringQueue(int maxSize){".
+    1.2)**Fehler** im Konstruktor: "maxSize = maxSize" ist falsch.
+    **Richtig:** "this.maxSize = maxSize".
+    
+    Bug:
+    ![Construktor Bug](./media/02_bug_01.PNG)
+    
+    Fix:
+    ![Construktor Fix](./media/02_fix_01.PNG)
+    	
+    2.) **Fehler** in remove() Methode: Vor der if-Abfrage wird mit
+    'element = "";' die Variable immer initialisiert, daher kann sie nie null werden.
+    **Lösung:** Entfernen dieser Zeile, da diese nicht sinnvoll.
+    
+    Bug:
+    ![remove() Bug](./media/02_bug_02.PNG)
 
-     1. Fehler im Konstruktor: "public StringQueue(int maxsize){" ist falsch.
-     
-            Richtig: "public    StringQueue(int maxSize){".
-        
-        Fehler im Konstruktor: "maxSize = maxSize" ist falsch.
-            
-            Richtig: "this.maxSize = maxSize".
-    	
+	Fix:
+	![remove() Fix](./media/02_fix_02.PNG)
+
+    3.) **Fehler** in poll() Methode: Hier wird ein Element nur entfernt wenn die    "size == 0" ist, dies würde nie ein Element löschen solange die Queue nicht leer ist, wäre diese leer würde ein Element entfernt werden, welches eine Exception werfen würde.
+    **Lösung:** Änderung der If-Abfrage auf "size > 0", sodass dies solange möglich ist, bis die Queue, keine Elemente mehr hat.
     
-        Bug:
+    Bug:
+    ![poll() Bug](./media/02_bug_03.PNG)
     
-    	![Construktor Bug](./media/02_bug_01.PNG)
-    	
-    	
-    	Fix:
+    Fix:
+    ![poll() Fix](./media/02_fix_03.PNG)
     
-    	![Construktor Fix](./media/02_fix_01.PNG)
-    	
-    	
-    
-     2. Fehler in remove() Methode: Vor der if-Abfrage wird mit
-        'element = "";' die Variable immer initialisiert, daher kann sie nie null werden.
-            
-            Lösung: Entfernen dieser Zeile, da diese nicht sinnvoll.
-     
-    
-    	Bug:
-    
-    	![remove() Bug](./media/02_bug_02.PNG)
-    	
-    	
-    	Fix:
-    	
-    	![remove() Fix](./media/02_fix_02.PNG)
-    	
-    	
-    
-     3. Fehler in poll() Methode: Hier wird ein Element nur entfernt wenn die    "size == 0" ist, dies würde nie ein Element löschen solange die         Queue nicht leer ist, wäre diese leer würde ein Element entfernt        werden, welches eine Exception werfen würde.
-     
-            Lösung: Änderung der If-Abfrage auf "size > 0", sodass dies solange möglich ist, bis die Queue, keine Elemente mehr hat.
-    
-    	Bug:
-    
-    	![poll() Bug](./media/02_bug_03.PNG)
-    	
-    
-    	Fix:
-    
-    	![poll() Fix](./media/02_fix_03.PNG)
-    	
-    
-     ###Erweiterungen/Optimierungen:###
-     
-         Der Konstruktor wurde um die Abfrage, ob maxSize kleiner gleich null ist erweitert, in diesem Fall wird eine Exception geworfen.
+- Erweiterungen/Optimierungen:
+    - Der Konstruktor wurde um die Abfrage, ob maxSize kleiner gleich null ist erweitert, in diesem Fall wird eine Exception geworfen.
+    - Default Constructor manuell hinzugefügt, um den angegebenen Wert(int maxSize = 5) als default Wert zu nutzen und zu testen, da dieser sonst keine Funktion hat.
 
 3.) Es wurden JavaDoc Kommentare zur Klasse und zu den Methoden hinzugefügt.
